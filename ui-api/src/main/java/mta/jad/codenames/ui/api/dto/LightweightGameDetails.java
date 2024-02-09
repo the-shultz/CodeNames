@@ -9,6 +9,10 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+/*
+  A lightweight representation of a game, containing only the name, the number of teams and the game status.
+  This is used for displaying the list of games in the dashboard page.
+ */
 public class LightweightGameDetails {
     public String name;
     private int teamsCount;

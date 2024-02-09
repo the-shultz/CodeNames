@@ -11,6 +11,10 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+/*
+    Represents the details of a players in a team's group
+    Contains the number of players required, the number of players registered, and the list of players names.
+ */
 public class TeamPlayers {
     private int totalRequired;
     private int totalRegistered;
