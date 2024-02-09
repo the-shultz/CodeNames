@@ -21,19 +21,16 @@ public enum CodeNamesUIApi {
 
     private GamesDashboard gamesDashboard;
 
-    public void init() throws IOException {
-        String userDir = System.getProperty("user.dir");
-        System.out.println("current working directory : " + userDir);
-        init(userDir);
-    }
-
     public void init(String workingDirectoryPath) throws IOException {
+        System.out.println("Searching implementations in " + workingDirectoryPath);
         File workingDirectory = new File(workingDirectoryPath);        
-        File[] files = workingDirectory.listFiles((dir, name) -> name.endsWith(".jar"));
+        File[] files = workingDirectory.listFiles((dir, name) ->
+                name.endsWith(".jar") &&
+                !name.contains("CodeNamesApp")); // don't treat the UI jar as it holds the api declarations
 
         if (files == null || files.length == 0) {
-            System.out.println("No jar files found in the working directory (" + workingDirectoryPath + ")! Exiting...");
-            throw new RuntimeException("No jar files found in the working directory [" + workingDirectoryPath + "]! Exiting...");
+            System.out.println("No jar files found in the working directory (" + workingDirectoryPath + ") Exiting...");
+            throw new RuntimeException("No jar files found in the working directory [" + workingDirectoryPath + "] Exiting...");
         } else {
             System.out.println("Found " + files.length + " jar files in the working directory (" + workingDirectoryPath + "):");
         }
