@@ -1,4 +1,4 @@
-package mta.jad.codenames.ui.api.admin.dashboard;
+package mta.jad.codenames.ui.api.dashboard.admin;
 
 import mta.jad.codenames.ui.api.dto.FullGameDetails;
 import mta.jad.codenames.ui.api.dto.LightweightGameDetails;
