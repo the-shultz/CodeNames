@@ -48,6 +48,11 @@ public enum CodeNamesUIApi {
 
     }
 
+    public void init(Login loginApi, GamesDashboard gamesDashboardApi) {
+        login = loginApi;
+        gamesDashboard = gamesDashboardApi;
+    }
+
     private void locateGameDashboardImpl(URLClassLoader urlClassLoader, ClassesAndJars jarsData) {
 
         Consumer<String> GameDashboardExtractor = findApiImplementationWrapper(urlClassLoader, GamesDashboard.class, apiImpl -> {
