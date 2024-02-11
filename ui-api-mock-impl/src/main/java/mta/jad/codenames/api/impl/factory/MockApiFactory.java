@@ -1,6 +1,8 @@
 package mta.jad.codenames.api.impl.factory;
 
+import mta.jad.codenames.api.impl.dashboard.GamesDashboardMock;
 import mta.jad.codenames.api.impl.login.LoginMock;
+import mta.jad.codenames.ui.api.dashboard.GamesDashboard;
 import mta.jad.codenames.ui.api.login.Login;
 
 public class MockApiFactory {
@@ -24,5 +26,11 @@ public class MockApiFactory {
                 .userLoginFailureChance(1.0)
                 .adminLoginResult(false)
                 .build();
+    }
+
+    public static GamesDashboard CreateGamesDashboard() {
+        return
+            new GamesDashboardMock();
+
     }
 }
