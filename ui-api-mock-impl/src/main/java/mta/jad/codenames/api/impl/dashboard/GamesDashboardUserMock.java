@@ -1,30 +1,26 @@
 package mta.jad.codenames.api.impl.dashboard;
 
+import lombok.Builder;
 import mta.jad.codenames.api.impl.util.MockUtils;
-import mta.jad.codenames.ui.api.dashboard.GamesDashboard;
 import mta.jad.codenames.ui.api.dto.FullGameDetails;
 import mta.jad.codenames.ui.api.dto.LightweightGameDetails;
 import mta.jad.codenames.ui.api.dto.TeamDetails;
 
-import java.util.*;
+import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
+@Builder
+public class GamesDashboardUserMock extends AbstractGameDashboardMock {
 
-public class GamesDashboardMock implements GamesDashboard {
-
-    private int totalGamesToProduce = 0;
-    private int totalSecondsIntervalForGameProduction = 2;
-    private double addNewGameFailureChance = 0;
-
-    private Consumer<List<LightweightGameDetails>> onGameDetailsChanged;
-    private Map<String, FullGameDetails> games = new HashMap<>();
+    private final int totalGamesToProduce;
+    private final int totalSecondsIntervalForGameProduction;
 
     @Override
     public void registerLightweightGameDetailsCallback(Consumer<List<LightweightGameDetails>> onGameDetailsChanged) {
-        System.out.println("GamesDashboardMock.registerLightweightGameDetailsCallback");
 
-        this.onGameDetailsChanged = onGameDetailsChanged;
         Timer timer = new Timer();
         timer.schedule(new TimerTask() {
 
@@ -45,28 +41,7 @@ public class GamesDashboardMock implements GamesDashboard {
                     timer.cancel();
                 }
             }
-        }, totalSecondsIntervalForGameProduction * 1000, totalSecondsIntervalForGameProduction * 1000);
-    }
-
-    @Override
-    public void getGameDetails(String gameName, Consumer<FullGameDetails> gameDetails, Consumer<String> fullGameDetailsFailure) {
-        if (games.containsKey(gameName)) {
-            gameDetails.accept(games.get(gameName));
-        } else {
-            fullGameDetailsFailure.accept("Game not found");
-        }
-    }
-
-    @Override
-    public void loadNewGame(String gameXmlPath, String dictionaryPath, Runnable onGameLoaded, Consumer<String> onGameLoadFailure) {
-        boolean failure = MockUtils.randomBoolean(addNewGameFailureChance);
-        if (failure) {
-            onGameLoadFailure.accept("Failed to load game");
-        } else {
-            FullGameDetails fullGameDetails = MockUtils.createRandomGameDetails(games.size() + 1);
-            games.put(fullGameDetails.getName(), fullGameDetails);
-            onGameLoaded.run();
-        }
+        }, totalSecondsIntervalForGameProduction * 1000L, totalSecondsIntervalForGameProduction * 1000L);
     }
 
     @Override
