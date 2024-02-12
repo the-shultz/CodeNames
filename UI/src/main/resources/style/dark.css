@@ -1,0 +1,23 @@
+* {
+    /* Colors for backgrounds */
+    -primary-background: #212121;       /* 900/100  */
+    -secondary-background: #313131;     /* special  */
+
+    -interact-background: #424242;      /* 800/200  */
+
+    /* Colors for text */
+    -primary-text: #FAFAFA;             /* 100/900  */
+    -secondary-text: #9E9E9E;           /* 500      */
+
+    /* Colors for separators */
+    -seperator-color: #212121;          /* 900/100  */
+    -seperator-width: 1;
+}
+
+.icon-eye {
+    -fx-image: url("/icon/white/visibility/baseline.png");
+}
+
+.icon-check {
+    -fx-image: url("/icon/white/check_circle_outline/baseline.png");
+}

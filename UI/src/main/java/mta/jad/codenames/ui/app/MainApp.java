@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import mta.jad.codenames.ui.app.style.StyleManager;
 import mta.jad.codenames.ui.api.loader.CodeNamesUIApi;
 
 import java.net.URL;
@@ -22,7 +23,7 @@ public class MainApp extends Application {
 
         // initialize the API instances to be used by the UI. has to be called once upon startup.
         // in case fails to locate API, throws informative exceptions.
-        CodeNamesUIApi.INSTANCE.init(implLocation);
+        //CodeNamesUIApi.INSTANCE.init(implLocation);
 
 /*
         // once initialized successfully, simple gain access to the API...
@@ -33,13 +34,17 @@ public class MainApp extends Application {
         });
 */
 
-        URL resource = getClass().getResource("/app/HelloWorld.fxml");
+        URL resource = getClass().getResource("/app/form/LoginForm.fxml");
         assert resource != null;
 
         Parent root = FXMLLoader.load(resource);
         Scene scene = new Scene(root);
+        StyleManager.getInstance().register(scene);
         primaryStage.setScene(scene);
+        primaryStage.sizeToScene();
         primaryStage.show();
+        primaryStage.setMinWidth(primaryStage.getWidth());
+        primaryStage.setMinHeight(primaryStage.getHeight());
     }
 
 

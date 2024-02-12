@@ -1,0 +1,82 @@
+.all,
+.root {
+    -fx-background-color: -primary-background;
+    -fx-border-color: transparent;
+}
+
+.text-area,
+.text-field,
+.text,
+.label,
+.button,
+.radio-button{
+    -fx-text-fill: -primary-text;
+}
+
+.button {
+    -fx-background-color: transparent;
+}
+
+.button-full {
+    -fx-background-color: -primary-accent-gradient;
+    -fx-background-radius: 64;
+    -fx-font-weight: bold;
+}
+
+.button:hover {
+    -fx-scale-x: 1.1;
+    -fx-scale-y: 1.1;
+}
+
+.radio-button .radio{
+    -fx-background-color: -interact-background;
+}
+
+.radio-button:selected .radio .dot{
+    -fx-background-color: -primary-text;
+}
+
+.text-field {
+    -fx-background-color: -interact-background;
+    -fx-background-radius: 8px;
+    -fx-border-radius: 8px;
+    -fx-border-color: -primary-accent-gradient;
+    -fx-border-width: 2px;
+    -fx-text-fill: -primary-text;
+    -fx-prompt-text-fill: -secondary-text;
+    -fx-background-insets: 1;
+}
+
+.labelTitle {
+    -fx-font-weight: bold;
+    -fx-font-size: 16pt;
+}
+
+.card-full {
+    -fx-background-radius: 16;
+    -fx-border-radius: 16;
+    -fx-border-width: 4;
+    -fx-border-color: -primary-team-gradient-blue;
+    -fx-background-color: -secondary-background;
+}
+
+.card {
+    -fx-background-radius: 16;
+    -fx-background-color: -primary-team-gradient-blue;
+}
+
+.card:hover {
+    -fx-scale-x: 1.1;
+    -fx-scale-y: 1.1;
+}
+
+.button-circle {
+    -fx-border-radius: 100%;
+    -fx-background-radius: 100%;
+    -fx-max-width: 48px;
+    -fx-max-height: 48px;
+    -fx-pref-width: 48px;
+    -fx-pref-height: 48px;
+    -fx-min-width: 48px;
+    -fx-min-height: 48px;
+}

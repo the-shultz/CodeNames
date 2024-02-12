@@ -1,0 +1,20 @@
+* {
+    /* Colors for intractable objects */
+    -primary-accent: #02bbee;
+    -secondary-accent: #ee3502;
+    -primary-gradient-accent: #3502ee;
+    -primary-accent-gradient: linear-gradient(to bottom right, -primary-accent, -primary-gradient-accent);
+
+    -primary-team-blue: #02bbee;
+    -secondary-team-blue: #0245ee;
+    -primary-team-gradient-blue: linear-gradient(to bottom right, -primary-team-blue, -secondary-team-blue);
+
+    -primary-team-red: #ee3502;
+    -secondary-team-red: #eeab02;
+    -primary-team-gradient-red: linear-gradient(to bottom right, -primary-team-red, -secondary-team-red);
+
+    -primary-team-neutral: #FFE57F;
+
+    /* Colors for errors */
+    -error: #D50000;
+}

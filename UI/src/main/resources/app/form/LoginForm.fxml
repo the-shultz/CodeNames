@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<GridPane fx:id="gridLayout" hgap="16.0" vgap="16.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mta.jad.codenames.ui.app.LoginController">
+    <columnConstraints>
+        <ColumnConstraints hgrow="NEVER" minWidth="10.0" />
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="128.0" />
+    </columnConstraints>
+    <rowConstraints>
+        <RowConstraints minHeight="10.0" prefHeight="32.0" vgrow="ALWAYS" />
+        <RowConstraints minHeight="10.0" prefHeight="32.0" vgrow="NEVER" />
+        <RowConstraints minHeight="10.0" prefHeight="32.0" vgrow="NEVER" />
+        <RowConstraints minHeight="10.0" prefHeight="32.0" vgrow="ALWAYS" />
+    </rowConstraints>
+    <padding>
+        <Insets bottom="32.0" left="32.0" right="32.0" top="32.0" />
+    </padding>
+    <Button fx:id="buttonLogin" mnemonicParsing="false" styleClass="button-full" text="LOGIN" GridPane.columnSpan="2147483647" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
+    <RadioButton fx:id="radioAdmin" mnemonicParsing="false" selected="true" text="Admin" GridPane.rowIndex="1">
+        <toggleGroup>
+            <ToggleGroup fx:id="toggleGroupType" />
+        </toggleGroup>
+    </RadioButton>
+    <RadioButton fx:id="radioUser" mnemonicParsing="false" text="User" toggleGroup="$toggleGroupType" GridPane.rowIndex="2" />
+    <TextField fx:id="textFieldName" promptText="Name" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+    <Label styleClass="labelTitle" text="Welcome to Code Names!" GridPane.columnSpan="2147483647" GridPane.halignment="CENTER" />
+</GridPane>
