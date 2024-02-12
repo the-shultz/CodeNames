@@ -29,9 +29,12 @@ import java.util.Optional;
         CodeNamesUIApi.INSTANCE.init(new LoginMock(), new GamesDashboardMock());
 
         for ease of use each mock implementation has a builder that allows to set the desired behavior of the mock.
-        you can also use MockApiFactory to create a mock with a predefined behavior.
+        you can also use MockApiFactory to create a mock with a predefined behavior for either user or admin,
         e.g.
-        CodeNamesUIApi.INSTANCE.init(MockApiFactory.CreateSuccessfulLogin(), MockApiFactory.CreateGamesDashboard());
+        Admin:
+        CodeNamesUIApi.INSTANCE.init(MockApiFactory.CreateSuccessfulLogin(), MockApiFactory.CreateAdminGamesDashboard());
+        User:
+        CodeNamesUIApi.INSTANCE.init(MockApiFactory.CreateSuccessfulLogin(), MockApiFactory.CreateUserGamesDashboard());
 
 ### using the API:
 
