@@ -15,12 +15,16 @@
 
 .button {
     -fx-background-color: transparent;
+    -fx-border-color: -primary-accent-gradient;
+    -fx-font-weight: bold;
+    -fx-background-radius: 8;
+    -fx-border-width: 2;
+    -fx-border-radius: 8;
 }
 
 .button-full {
     -fx-background-color: -primary-accent-gradient;
-    -fx-background-radius: 64;
-    -fx-font-weight: bold;
+    -fx-border-color: transparent;
 }
 
 .button:hover {
@@ -56,18 +60,26 @@
     -fx-background-radius: 16;
     -fx-border-radius: 16;
     -fx-border-width: 4;
-    -fx-border-color: -primary-team-gradient-blue;
+    -fx-border-color: -primary-team-gradient-black;
     -fx-background-color: -secondary-background;
 }
 
 .card {
     -fx-background-radius: 16;
-    -fx-background-color: -primary-team-gradient-blue;
+    -fx-background-color: -primary-team-gradient-black;
 }
 
 .card:hover {
     -fx-scale-x: 1.1;
     -fx-scale-y: 1.1;
+}
+
+.team-card {
+    -fx-background-radius: 16;
+    -fx-border-radius: 16;
+    -fx-border-width: 4;
+    -fx-border-color: -primary-team-gradient-blue;
+    -fx-background-color: -secondary-background;
 }
 
 .button-circle {

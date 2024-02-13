@@ -13,6 +13,10 @@
     -secondary-team-red: #eeab02;
     -primary-team-gradient-red: linear-gradient(to bottom right, -primary-team-red, -secondary-team-red);
 
+    -primary-team-black: #212121;
+    -secondary-team-black: #263238;
+    -primary-team-gradient-black: linear-gradient(to bottom left, -primary-team-black, -secondary-team-black);
+
     -primary-team-neutral: #FFE57F;
 
     /* Colors for errors */

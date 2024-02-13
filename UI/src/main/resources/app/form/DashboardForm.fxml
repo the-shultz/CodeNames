@@ -1,25 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import mta.jad.codenames.ui.app.components.*?>
 
-<GridPane hgap="16.0" vgap="16.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mta.jad.codenames.ui.app.DashboardController">
-  <columnConstraints>
-    <ColumnConstraints hgrow="SOMETIMES" />
-    <ColumnConstraints hgrow="SOMETIMES" />
-  </columnConstraints>
-  <rowConstraints>
-    <RowConstraints vgrow="SOMETIMES" />
-    <RowConstraints vgrow="SOMETIMES" />
-    <RowConstraints vgrow="SOMETIMES" />
-  </rowConstraints>
-
-    <WordCard />
-    <WordCard GridPane.columnIndex="1" />
-    <WordCard GridPane.rowIndex="1" />
-    <WordCard GridPane.columnIndex="1" GridPane.rowIndex="1" />
-   <padding>
-      <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />
-   </padding>
-</GridPane>
+<SplitPane dividerPositions="0.3" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mta.jad.codenames.ui.app.DashboardController">
+    <TableView>
+        <columns>
+            <TableColumn maxWidth="1.7976931348623157E308" prefWidth="75.0" text="Name" />
+            <TableColumn maxWidth="1.7976931348623157E308" prefWidth="75.0" text="Teams" />
+            <TableColumn maxWidth="1.7976931348623157E308" prefWidth="75.0" text="Status" />
+        </columns>
+    </TableView>
+    <GridPane hgap="16.0" vgap="16.0">
+        <columnConstraints>
+            <ColumnConstraints hgrow="NEVER" minWidth="10.0" />
+            <ColumnConstraints hgrow="NEVER" minWidth="10.0" />
+            <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" />
+        </columnConstraints>
+        <rowConstraints>
+            <RowConstraints minHeight="10.0" vgrow="NEVER" />
+            <RowConstraints minHeight="10.0" vgrow="NEVER" />
+            <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+        <padding>
+            <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />
+        </padding>
+        <DataLabel data="Game Name" title="Game Name" />
+        <DataLabel data="Playing" title="Status" GridPane.rowIndex="1" />
+        <DataLabel data="3" title="Black Cards" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+        <DataLabel data="25" title="Cards" GridPane.columnIndex="1" />
+        <Button mnemonicParsing="false" text="Button" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowSpan="2" />
+      <ScrollPane GridPane.columnSpan="2147483647" GridPane.rowIndex="2">
+         <content>
+              <HBox fx:id="hboxTeams" spacing="16.0" />
+         </content>
+      </ScrollPane>
+    </GridPane>
+</SplitPane>
