@@ -4,6 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -34,23 +35,27 @@ public class LoginController {
         buttonLogin.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                URL resource = getClass().getResource("/app/form/DashboardForm.fxml");
-                assert resource != null;
-
-                Parent root = null;
                 try {
-                    root = FXMLLoader.load(resource);
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/app/form/DashboardForm.fxml"));
+                    Parent root = loader.load();
+
+                    // Create a new stage (window)
+                    Stage newStage = new Stage();
+                    newStage.setTitle("Dashboard");
+                    Scene scene = new Scene(root);
+                    StyleManager.getInstance().register(scene);
+                    newStage.setScene(scene);
+                    newStage.sizeToScene();
+                    newStage.show();
+                    newStage.setMinWidth(newStage.getWidth());
+                    newStage.setMinHeight(newStage.getHeight());
+
+                    Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                    currentStage.close();
                 } catch (IOException e) {
-                    throw new RuntimeException(e);
+                    e.printStackTrace();
                 }
-                Stage primaryStage = new Stage();
-                Scene scene = new Scene(root);
-                StyleManager.getInstance().register(scene);
-                primaryStage.setScene(scene);
-                primaryStage.sizeToScene();
-                primaryStage.show();
-                primaryStage.setMinWidth(primaryStage.getWidth());
-                primaryStage.setMinHeight(primaryStage.getHeight());
+
             }
         });
     }
