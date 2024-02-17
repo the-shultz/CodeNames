@@ -45,7 +45,7 @@ public class GamesDashboardUserMock extends AbstractGameDashboardMock {
     }
 
     @Override
-    public void registerDefiner(String gameName, String teamName, String playerName, Consumer<FullGameDetails> onRegistrationSuccess, Consumer<String> onRegistrationFailure) {
+    public void registerDefiner(String gameName, String teamName, String playerName, Runnable onRegistrationSuccess, Consumer<String> onRegistrationFailure) {
 
         if (!games.containsKey(gameName)) {
             onRegistrationFailure.accept("Game not found");
@@ -65,7 +65,7 @@ public class GamesDashboardUserMock extends AbstractGameDashboardMock {
 
             teamDetails.getDefiners().setTotalRegistered(teamDetails.getDefiners().getTotalRegistered() + 1);
             teamDetails.getDefiners().getPlayers().add(playerName);
-            onRegistrationSuccess.accept(fullGameDetails);
+            onRegistrationSuccess.run();
 
         } catch (RuntimeException e) {
             onRegistrationFailure.accept("Team not found");
@@ -73,7 +73,7 @@ public class GamesDashboardUserMock extends AbstractGameDashboardMock {
     }
 
     @Override
-    public void registerGuesser(String gameName, String teamName, String playerName, Consumer<FullGameDetails> onRegistrationSuccess, Consumer<String> onRegistrationFailure) {
+    public void registerGuesser(String gameName, String teamName, String playerName, Runnable onRegistrationSuccess, Consumer<String> onRegistrationFailure) {
         if (!games.containsKey(gameName)) {
             onRegistrationFailure.accept("Game not found");
             return;
@@ -92,7 +92,7 @@ public class GamesDashboardUserMock extends AbstractGameDashboardMock {
 
             teamDetails.getGuessers().setTotalRegistered(teamDetails.getGuessers().getTotalRegistered() + 1);
             teamDetails.getGuessers().getPlayers().add(playerName);
-            onRegistrationSuccess.accept(fullGameDetails);
+            onRegistrationSuccess.run();
 
         } catch (RuntimeException e) {
             onRegistrationFailure.accept("Team not found");

@@ -25,12 +25,12 @@ public abstract class AbstractGameDashboardMock implements GamesDashboard {
     }
 
     @Override
-    public void registerDefiner(String gameName, String teamName, String playerName, Consumer<FullGameDetails> onRegistrationSuccess, Consumer<String> onRegistrationFailure) {
+    public void registerDefiner(String gameName, String teamName, String playerName, Runnable onRegistrationSuccess, Consumer<String> onRegistrationFailure) {
         System.out.println("GamesDashboardMock.registerDefiner | USER ONLY method");
     }
 
     @Override
-    public void registerGuesser(String gameName, String teamName, String playerName, Consumer<FullGameDetails> onRegistrationSuccess, Consumer<String> onRegistrationFailure) {
+    public void registerGuesser(String gameName, String teamName, String playerName, Runnable onRegistrationSuccess, Consumer<String> onRegistrationFailure) {
         System.out.println("GamesDashboardMock.registerDefiner | USER ONLY method");
     }
 
