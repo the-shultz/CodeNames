@@ -2,6 +2,7 @@ package mta.jad.codenames.ui.api.loader;
 
 import lombok.Getter;
 import mta.jad.codenames.ui.api.dashboard.GamesDashboard;
+import mta.jad.codenames.ui.api.game.ActiveGame;
 import mta.jad.codenames.ui.api.login.Login;
 
 import java.io.File;
@@ -22,6 +23,7 @@ public enum CodeNamesUIApi {
 
     private GamesDashboard gamesDashboard;
     private Login login;
+    private ActiveGame activeGame;
 
     public void init(String workingDirectoryPath) throws IOException {
         System.out.println("Searching implementations in " + workingDirectoryPath);
@@ -48,9 +50,10 @@ public enum CodeNamesUIApi {
 
     }
 
-    public void init(Login loginApi, GamesDashboard gamesDashboardApi) {
+    public void init(Login loginApi, GamesDashboard gamesDashboardApi, ActiveGame activeGameApi) {
         login = loginApi;
         gamesDashboard = gamesDashboardApi;
+        activeGame = activeGameApi;
     }
 
     private void locateGameDashboardImpl(URLClassLoader urlClassLoader, ClassesAndJars jarsData) {
