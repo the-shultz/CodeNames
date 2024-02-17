@@ -2,8 +2,8 @@ package mta.jad.codenames.api.impl.dashboard;
 
 import lombok.Builder;
 import mta.jad.codenames.api.impl.util.MockUtils;
-import mta.jad.codenames.ui.api.dto.FullGameDetails;
-import mta.jad.codenames.ui.api.dto.LightweightGameDetails;
+import mta.jad.codenames.ui.api.dto.definition.FullGameDetails;
+import mta.jad.codenames.ui.api.dto.definition.LightweightGameDetails;
 
 import java.util.List;
 import java.util.Timer;

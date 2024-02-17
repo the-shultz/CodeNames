@@ -1,7 +1,7 @@
 package mta.jad.codenames.api.impl.dashboard;
 
 import mta.jad.codenames.ui.api.dashboard.GamesDashboard;
-import mta.jad.codenames.ui.api.dto.FullGameDetails;
+import mta.jad.codenames.ui.api.dto.definition.FullGameDetails;
 
 import java.util.HashMap;
 import java.util.Map;

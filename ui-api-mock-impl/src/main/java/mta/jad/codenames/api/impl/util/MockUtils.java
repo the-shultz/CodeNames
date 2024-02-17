@@ -1,9 +1,9 @@
 package mta.jad.codenames.api.impl.util;
 
-import mta.jad.codenames.ui.api.dto.FullGameDetails;
-import mta.jad.codenames.ui.api.dto.GameStatus;
-import mta.jad.codenames.ui.api.dto.TeamDetails;
-import mta.jad.codenames.ui.api.dto.TeamPlayers;
+import mta.jad.codenames.ui.api.dto.definition.FullGameDetails;
+import mta.jad.codenames.ui.api.dto.definition.GameStatus;
+import mta.jad.codenames.ui.api.dto.definition.TeamDetails;
+import mta.jad.codenames.ui.api.dto.definition.TeamPlayers;
 
 import java.util.Random;
 import java.util.stream.Collectors;

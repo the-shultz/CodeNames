@@ -1,6 +1,7 @@
-package mta.jad.codenames.ui.api.dto;
+package mta.jad.codenames.ui.api.dto.definition;
 
 import lombok.*;
+import mta.jad.codenames.ui.api.dto.global.TeamColor;
 
 @Getter
 @Setter
@@ -14,6 +15,7 @@ import lombok.*;
 public class TeamDetails {
     private String name;
     private int cardsCount;
+    private TeamColor color;
     private TeamPlayers definers;
     private TeamPlayers guessers;
 }

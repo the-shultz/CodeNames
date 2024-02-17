@@ -1,7 +1,5 @@
 package mta.jad.codenames.ui.api.dashboard.player;
 
-import mta.jad.codenames.ui.api.dto.FullGameDetails;
-
 import java.util.function.Consumer;
 
 public interface UserGamesDashboard {
