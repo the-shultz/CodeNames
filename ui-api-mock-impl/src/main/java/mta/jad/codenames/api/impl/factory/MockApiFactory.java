@@ -4,11 +4,12 @@ import mta.jad.codenames.api.impl.dashboard.GamesDashboardAdminMock;
 import mta.jad.codenames.api.impl.dashboard.GamesDashboardUserMock;
 import mta.jad.codenames.api.impl.login.LoginMock;
 import mta.jad.codenames.ui.api.dashboard.GamesDashboard;
+import mta.jad.codenames.ui.api.game.ActiveGame;
 import mta.jad.codenames.ui.api.login.Login;
 
 public class MockApiFactory {
 
-    public static Login CreateSuccessfulLogin() {
+    public static Login createSuccessfulLogin() {
         return
             LoginMock
                 .builder()
@@ -19,7 +20,7 @@ public class MockApiFactory {
 
     }
 
-    public static Login CreateFailedLogin() {
+    public static Login createFailedLogin() {
         return
             LoginMock
                 .builder()
@@ -29,7 +30,7 @@ public class MockApiFactory {
                 .build();
     }
 
-    public static GamesDashboard CreateAdminGamesDashboard() {
+    public static GamesDashboard createAdminGamesDashboard() {
         return
             GamesDashboardAdminMock
                     .builder()
@@ -37,12 +38,16 @@ public class MockApiFactory {
                     .build();
     }
 
-    public static GamesDashboard CreateUserGamesDashboard() {
+    public static GamesDashboard createUserGamesDashboard() {
         return
             GamesDashboardUserMock
                     .builder()
                     .totalGamesToProduce(2)
                     .totalSecondsIntervalForGameProduction(2)
                     .build();
+    }
+
+    public static ActiveGame createActiveGame() {
+        return null;
     }
 }

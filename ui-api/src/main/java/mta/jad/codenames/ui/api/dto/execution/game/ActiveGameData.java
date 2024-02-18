@@ -17,4 +17,7 @@ public class ActiveGameData {
 
     @Singular
     private List<WordData> words;
+
+    private int rows;
+    private int columns;
 }
