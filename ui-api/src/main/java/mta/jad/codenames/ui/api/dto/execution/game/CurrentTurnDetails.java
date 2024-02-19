@@ -1,12 +1,10 @@
 package mta.jad.codenames.ui.api.dto.execution.game;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import mta.jad.codenames.ui.api.dto.global.TeamColor;
 
 @Getter
+@Setter
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor

@@ -5,6 +5,7 @@ import mta.jad.codenames.ui.api.dto.global.TeamColor;
 import org.omg.CORBA.PRIVATE_MEMBER;
 
 @Getter
+@Setter
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor

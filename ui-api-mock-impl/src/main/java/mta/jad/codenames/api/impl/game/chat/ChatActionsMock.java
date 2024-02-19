@@ -1,6 +1,7 @@
-package mta.jad.codenames.api.impl.game;
+package mta.jad.codenames.api.impl.game.chat;
 
 import lombok.Builder;
+import mta.jad.codenames.api.impl.game.AbstractActiveGameMock;
 import mta.jad.codenames.api.impl.util.MockUtils;
 import mta.jad.codenames.ui.api.dto.execution.chat.ChatMessage;
 import mta.jad.codenames.ui.api.dto.global.PlayerType;
