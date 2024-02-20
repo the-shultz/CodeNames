@@ -1,4 +1,4 @@
-package mta.jad.codenames.api.impl.game.turns;
+package mta.jad.codenames.api.impl.game.turns.api;
 
 import mta.jad.codenames.ui.api.dto.execution.game.ActiveGameData;
 

@@ -1,6 +1,7 @@
-package mta.jad.codenames.api.impl.game.turns;
+package mta.jad.codenames.api.impl.game.turns.impl;
 
 import lombok.Getter;
+import mta.jad.codenames.api.impl.game.turns.api.MockedTurn;
 import mta.jad.codenames.ui.api.dto.execution.game.ActiveGameData;
 
 @Getter

@@ -1,4 +1,4 @@
-package mta.jad.codenames.api.impl.game.turns;
+package mta.jad.codenames.api.impl.game.turns.impl;
 
 import mta.jad.codenames.ui.api.dto.execution.game.ActiveGameData;
 import mta.jad.codenames.ui.api.dto.execution.game.ActiveGameTeamDetails;
@@ -7,8 +7,7 @@ public class SwitchActiveTeamMockTurn extends AbstractMockedTurn {
 
     private String nextTeamTurn;
 
-    // package friendly constructor specifically to allow access only to MockTurnsFactory
-    SwitchActiveTeamMockTurn(int sleepTimeBefore, String nextTeamTurn) {
+    public SwitchActiveTeamMockTurn(int sleepTimeBefore, String nextTeamTurn) {
         super(sleepTimeBefore);
         this.nextTeamTurn = nextTeamTurn;
     }

@@ -1,4 +1,4 @@
-package mta.jad.codenames.api.impl.game.turns;
+package mta.jad.codenames.api.impl.game.turns.impl;
 
 import mta.jad.codenames.ui.api.dto.execution.game.*;
 
@@ -7,8 +7,7 @@ public class MakeAGuessMockTurn extends AbstractMockedTurn {
     private final String word;
     private final String teamName;
 
-    // package friendly constructor specifically to allow access only to MockTurnsFactory
-    MakeAGuessMockTurn(int sleepTimeBefore, String word, String teamName) {
+    public MakeAGuessMockTurn(int sleepTimeBefore, String word, String teamName) {
         super(sleepTimeBefore);
         this.word = word;
         this.teamName = teamName;
