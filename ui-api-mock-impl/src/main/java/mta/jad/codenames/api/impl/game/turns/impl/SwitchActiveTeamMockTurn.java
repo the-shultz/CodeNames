@@ -5,7 +5,7 @@ import mta.jad.codenames.ui.api.dto.execution.game.ActiveGameTeamDetails;
 
 public class SwitchActiveTeamMockTurn extends AbstractMockedTurn {
 
-    private String nextTeamTurn;
+    private final String nextTeamTurn;
 
     public SwitchActiveTeamMockTurn(int sleepTimeBefore, String nextTeamTurn) {
         super(sleepTimeBefore);
@@ -14,10 +14,13 @@ public class SwitchActiveTeamMockTurn extends AbstractMockedTurn {
 
     @Override
     protected void internalPerform(ActiveGameData activeGameData) {
-        ActiveGameTeamDetails nextTeam = activeGameData.getTeams().stream()
-                .filter(team -> team.getName().equals(nextTeamTurn))
-                .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException("Team not found"));
+        ActiveGameTeamDetails nextTeam =
+                activeGameData
+                        .getTeams()
+                        .stream()
+                        .filter(team -> team.getName().equals(nextTeamTurn))
+                        .findFirst()
+                        .orElseThrow(() -> new IllegalArgumentException("Team not found"));
 
         activeGameData.getCurrentTurn().setTeamColor(nextTeam.getColor());
         activeGameData.getCurrentTurn().setTeamName(nextTeam.getName());

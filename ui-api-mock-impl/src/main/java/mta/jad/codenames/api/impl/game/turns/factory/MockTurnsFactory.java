@@ -7,8 +7,8 @@ import mta.jad.codenames.api.impl.game.turns.api.MockedTurn;
 
 public class MockTurnsFactory {
 
-    public static MockedTurn createGuessTurn(int sleepTimeBefore, String word, String teamName) {
-        return new MakeAGuessMockTurn( sleepTimeBefore, word, teamName );
+    public static MockedTurn createGuessTurn(int sleepTimeBefore, String word) {
+        return new MakeAGuessMockTurn( sleepTimeBefore, word);
     }
 
     public static MockedTurn createDefinitionTurn(int sleepTimeBefore, String definition, int totalWords) {
