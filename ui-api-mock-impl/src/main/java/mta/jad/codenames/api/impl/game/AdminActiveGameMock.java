@@ -4,6 +4,7 @@ import mta.jad.codenames.api.impl.game.turns.api.MockedTurn;
 import mta.jad.codenames.ui.api.dto.execution.game.ActiveGameData;
 import mta.jad.codenames.ui.api.dto.execution.game.ActiveGameTeamDetails;
 import mta.jad.codenames.ui.api.dto.execution.game.ActiveGameTeamStatus;
+import mta.jad.codenames.ui.api.game.chat.ChatActions;
 
 import java.util.List;
 import java.util.Map;
@@ -18,7 +19,8 @@ public class AdminActiveGameMock extends AbstractActiveGameMock {
     private WinLooseStatus onWinnerLooserUpdates;
     private final Map<String, ActiveGameTeamStatus> teamStatus;
 
-    public AdminActiveGameMock(ActiveGameData baseGameDetails, List<MockedTurn> turns) {
+    public AdminActiveGameMock(ChatActions chatActions, ActiveGameData baseGameDetails, List<MockedTurn> turns) {
+        super(chatActions);
         this.baseGameDetails = baseGameDetails;
         this.turns = turns;
 
@@ -48,9 +50,12 @@ public class AdminActiveGameMock extends AbstractActiveGameMock {
             return;
         }
 
-        new Thread(() ->
-                turns
-                    .forEach(turn -> {
+        new Thread(() -> {
+
+            // sleep for 3 seconds before starting the sequence
+            sleepSomeTime(3000);
+
+            turns.forEach(turn -> {
                         turn.perform(baseGameDetails);
 
                         // update the teamStatus map with the new status of the teams.
@@ -70,7 +75,16 @@ public class AdminActiveGameMock extends AbstractActiveGameMock {
                                 });
 
                         onActiveGameUpdates.accept(baseGameDetails);
-                    }))
-                .start();
+                    });
+            })
+            .start();
+    }
+
+    private void sleepSomeTime(int millis) {
+        try {
+            Thread.sleep(millis);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 }
