@@ -1,10 +1,11 @@
 package mta.jad.codenames.api.impl.game.chat;
 
 import lombok.Builder;
-import mta.jad.codenames.api.impl.game.AbstractActiveGameMock;
+import mta.jad.codenames.api.impl.game.impl.AbstractActiveGameMock;
 import mta.jad.codenames.api.impl.util.MockUtils;
 import mta.jad.codenames.ui.api.dto.execution.chat.ChatMessage;
 import mta.jad.codenames.ui.api.dto.global.PlayerType;
+import mta.jad.codenames.ui.api.game.chat.ChatActions;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,7 +15,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.Consumer;
 
 @Builder
-public class ChatActionsMock extends AbstractActiveGameMock {
+public class ChatActionsMock implements ChatActions {
 
     private int totalMessagesToProduce;
     private int messagesIntervalSeconds;

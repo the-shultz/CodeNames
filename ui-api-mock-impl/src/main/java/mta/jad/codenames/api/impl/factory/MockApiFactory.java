@@ -2,10 +2,20 @@ package mta.jad.codenames.api.impl.factory;
 
 import mta.jad.codenames.api.impl.dashboard.GamesDashboardAdminMock;
 import mta.jad.codenames.api.impl.dashboard.GamesDashboardUserMock;
+import mta.jad.codenames.api.impl.game.chat.ChatActionsMock;
+import mta.jad.codenames.api.impl.game.impl.AdminActiveGameMock;
+import mta.jad.codenames.api.impl.game.turns.api.MockedTurn;
+import mta.jad.codenames.api.impl.game.turns.factory.MockTurnsFactory;
 import mta.jad.codenames.api.impl.login.LoginMock;
 import mta.jad.codenames.ui.api.dashboard.GamesDashboard;
+import mta.jad.codenames.ui.api.dto.execution.game.ActiveGameData;
+import mta.jad.codenames.ui.api.dto.global.PlayerType;
 import mta.jad.codenames.ui.api.game.ActiveGame;
+import mta.jad.codenames.ui.api.game.chat.ChatActions;
 import mta.jad.codenames.ui.api.login.Login;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MockApiFactory {
 
@@ -47,7 +57,40 @@ public class MockApiFactory {
                     .build();
     }
 
-    public static ActiveGame createActiveGame() {
-        return null;
+    public static ChatActions createDefaultChat() {
+        return
+            ChatActionsMock
+                .builder()
+                .messagesIntervalSeconds(3)
+                .sendMessageSuccessChance(1)
+                .totalMessagesToProduce(10)
+                .playerTypes(new PlayerType[]{PlayerType.Definer, PlayerType.Guesser})
+                .build();
+    }
+
+    public static ActiveGame createAdminActiveGame() {
+        List<MockedTurn> turns = new ArrayList<>();
+        turns.add(MockTurnsFactory.createSwitchActiveTeamTurn(1000, "T1"));
+        turns.add(MockTurnsFactory.createDefinitionTurn(1000, "fruits", 2));
+        turns.add(MockTurnsFactory.createGuessTurn(1000, "apple"));
+        turns.add(MockTurnsFactory.createGuessTurn(1000, "banana"));
+        turns.add(MockTurnsFactory.createSwitchActiveTeamTurn(1000, "T2"));
+        turns.add(MockTurnsFactory.createDefinitionTurn(1000, "vegetables", 2));
+        turns.add(MockTurnsFactory.createGuessTurn(1000, "black"));
+
+        ActiveGameData activeGameData = ActiveGameData.builder().build();
+        return new AdminActiveGameMock(createDefaultChat(), activeGameData, turns);
+    }
+
+    public static ActiveGame createPlayerActiveGame() {
+        List<MockedTurn> turns = new ArrayList<>();
+        turns.add(MockTurnsFactory.createSwitchActiveTeamTurn(1000, "T1"));
+        turns.add(MockTurnsFactory.createWaitForUserAction()); // for definition matching one word
+        turns.add(MockTurnsFactory.createWaitForUserAction()); // for guessing one word
+        turns.add(MockTurnsFactory.createSwitchActiveTeamTurn(1000, "T2"));
+        turns.add(MockTurnsFactory.createWaitForUserAction()); // for user end turn
+
+        ActiveGameData activeGameData = ActiveGameData.builder().build();
+        return new AdminActiveGameMock(createDefaultChat(), activeGameData, turns);
     }
 }

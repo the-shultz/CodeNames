@@ -1,6 +1,7 @@
 package mta.jad.codenames.api.impl.game.turns.impl;
 
 import lombok.Getter;
+import mta.jad.codenames.api.impl.game.impl.LatchWrapper;
 import mta.jad.codenames.api.impl.game.turns.api.MockedTurn;
 import mta.jad.codenames.ui.api.dto.execution.game.ActiveGameData;
 
@@ -26,5 +27,11 @@ public abstract class AbstractMockedTurn implements MockedTurn {
         }
         internalPerform(activeGameData);
     }
+
+    @Override
+    public void setLatch(LatchWrapper latch) {
+
+    }
+
     protected abstract void internalPerform(ActiveGameData activeGameData);
 }
