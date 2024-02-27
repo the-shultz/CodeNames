@@ -8,8 +8,9 @@ import mta.jad.codenames.api.impl.game.turns.api.MockedTurn;
 import mta.jad.codenames.api.impl.game.turns.factory.MockTurnsFactory;
 import mta.jad.codenames.api.impl.login.LoginMock;
 import mta.jad.codenames.ui.api.dashboard.GamesDashboard;
-import mta.jad.codenames.ui.api.dto.execution.game.ActiveGameData;
+import mta.jad.codenames.ui.api.dto.execution.game.*;
 import mta.jad.codenames.ui.api.dto.global.PlayerType;
+import mta.jad.codenames.ui.api.dto.global.TeamColor;
 import mta.jad.codenames.ui.api.game.ActiveGame;
 import mta.jad.codenames.ui.api.game.chat.ChatActions;
 import mta.jad.codenames.ui.api.login.Login;
@@ -73,12 +74,12 @@ public class MockApiFactory {
         turns.add(MockTurnsFactory.createSwitchActiveTeamTurn(1000, "T1"));
         turns.add(MockTurnsFactory.createDefinitionTurn(1000, "fruits", 2));
         turns.add(MockTurnsFactory.createGuessTurn(1000, "apple"));
-        turns.add(MockTurnsFactory.createGuessTurn(1000, "banana"));
+        turns.add(MockTurnsFactory.createGuessTurn(1000, "paper"));
         turns.add(MockTurnsFactory.createSwitchActiveTeamTurn(1000, "T2"));
         turns.add(MockTurnsFactory.createDefinitionTurn(1000, "vegetables", 2));
-        turns.add(MockTurnsFactory.createGuessTurn(1000, "black"));
+        turns.add(MockTurnsFactory.createGuessTurn(1000, "snake"));
 
-        ActiveGameData activeGameData = ActiveGameData.builder().build();
+        ActiveGameData activeGameData = createActiveGameData();
         return new AdminActiveGameMock(createDefaultChat(), activeGameData, turns);
     }
 
@@ -90,7 +91,48 @@ public class MockApiFactory {
         turns.add(MockTurnsFactory.createSwitchActiveTeamTurn(1000, "T2"));
         turns.add(MockTurnsFactory.createWaitForUserAction()); // for user end turn
 
-        ActiveGameData activeGameData = ActiveGameData.builder().build();
+        ActiveGameData activeGameData = createActiveGameData();
         return new AdminActiveGameMock(createDefaultChat(), activeGameData, turns);
+    }
+
+    private static ActiveGameData createActiveGameData() {
+        return
+                ActiveGameData
+                        .builder()
+                        .name("Game 1")
+                        .rows(3)
+                        .columns(3)
+
+                        // words
+                        .word(WordData.builder().word("apple").wordColor(WordColor.BLUE).build())
+                        .word(WordData.builder().word("work").wordColor(WordColor.BLUE).build())
+                        .word(WordData.builder().word("camera").wordColor(WordColor.BLUE).build())
+                        .word(WordData.builder().word("glass").wordColor(WordColor.RED).build())
+                        .word(WordData.builder().word("pen").wordColor(WordColor.RED).build())
+                        .word(WordData.builder().word("wire").wordColor(WordColor.RED).build())
+                        .word(WordData.builder().word("paper").wordColor(WordColor.NEUTRAL).build())
+                        .word(WordData.builder().word("phone").wordColor(WordColor.NEUTRAL).build())
+                        .word(WordData.builder().word("snake").wordColor(WordColor.BLACK).build())
+
+                        // teams
+                        .team(ActiveGameTeamDetails
+                                .builder()
+                                .name("T1")
+                                .color(TeamColor.BLUE)
+                                .cardsCount(3)
+                                .currentScore(0)
+                                .numberOfTurns(0)
+                                .status(ActiveGameTeamStatus.IN_GAME)
+                                .build())
+                        .team(ActiveGameTeamDetails
+                                .builder()
+                                .name("T2")
+                                .color(TeamColor.RED)
+                                .cardsCount(3)
+                                .currentScore(0)
+                                .numberOfTurns(0)
+                                .status(ActiveGameTeamStatus.IN_GAME)
+                                .build())
+                        .build();
     }
 }

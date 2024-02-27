@@ -10,6 +10,7 @@ import java.util.List;
 @AllArgsConstructor
 public class ActiveGameData {
 
+    private String name;
     private CurrentTurnDetails currentTurn;
 
     @Singular
