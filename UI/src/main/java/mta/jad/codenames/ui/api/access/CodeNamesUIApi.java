@@ -1,11 +1,11 @@
 package mta.jad.codenames.ui.api.access;
 
-import lombok.Getter;
-import mta.jad.codenames.ui.api.dashboard.GamesDashboard;
-import mta.jad.codenames.ui.api.game.ActiveGame;
+
 import mta.jad.codenames.ui.api.access.wrapper.ActiveGameExecutorWrapper;
 import mta.jad.codenames.ui.api.access.wrapper.GamesDashboardExecutorWrapper;
 import mta.jad.codenames.ui.api.access.wrapper.LoginExecutorWrapper;
+import mta.jad.codenames.ui.api.dashboard.GamesDashboard;
+import mta.jad.codenames.ui.api.game.ActiveGame;
 import mta.jad.codenames.ui.api.login.Login;
 
 import java.io.File;
@@ -20,7 +20,6 @@ import java.util.function.Consumer;
 import java.util.jar.JarFile;
 import java.util.stream.Collectors;
 
-@Getter
 public enum CodeNamesUIApi {
     INSTANCE;
 
@@ -57,6 +56,18 @@ public enum CodeNamesUIApi {
         login = new LoginExecutorWrapper(loginApi);
         gamesDashboard = new GamesDashboardExecutorWrapper(gamesDashboardApi);
         activeGame = new ActiveGameExecutorWrapper(activeGameApi);
+    }
+
+    public GamesDashboard getGamesDashboard() {
+        return gamesDashboard;
+    }
+
+    public Login getLogin() {
+        return login;
+    }
+
+    public ActiveGame getActiveGame() {
+        return activeGame;
     }
 
     private void locateActiveGameImpl(URLClassLoader urlClassLoader, ClassesAndJars jarsData) {
