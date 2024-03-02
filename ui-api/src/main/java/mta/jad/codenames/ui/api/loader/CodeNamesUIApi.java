@@ -53,13 +53,13 @@ public enum CodeNamesUIApi {
     public void init(Login loginApi, GamesDashboard gamesDashboardApi, ActiveGame activeGameApi) {
         login = new LoginExecutorWrapper(loginApi);
         gamesDashboard = new GamesDashboardExecutorWrapper(gamesDashboardApi);
-        activeGame = activeGameApi;
+        activeGame = new ActiveGameExecutorWrapper(activeGameApi);
     }
 
     private void locateActiveGameImpl(URLClassLoader urlClassLoader, ClassesAndJars jarsData) {
 
         Consumer<String> GameDashboardExtractor = findApiImplementationWrapper(urlClassLoader, ActiveGame.class, apiImpl -> {
-            activeGame = apiImpl;
+            activeGame = new ActiveGameExecutorWrapper(apiImpl);
             System.out.println("ActiveGame implementation found: " + apiImpl.getClass().getName());
         });
 

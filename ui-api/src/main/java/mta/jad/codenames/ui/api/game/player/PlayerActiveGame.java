@@ -5,6 +5,7 @@ import java.util.function.Consumer;
 public interface PlayerActiveGame {
 
     /**
+     * ACTIVE METHOD
      * Gives a definition for a word. the definition is composed of a phrase and the number of words it represents.
      * it is the responsibility of the implementation to know which team this definition belongs to
      * @param definition the phrase of the definition
@@ -15,6 +16,7 @@ public interface PlayerActiveGame {
     void giveDefinition(String definition, int numberOfWords, Runnable onSuccess, Consumer<String> onError);
 
     /**
+     * ACTIVE METHOD
      * Makes a guess for a word.
      * it is the responsibility of the implementation to know which team this guess belongs to
      * @param word the word to guess
@@ -24,6 +26,7 @@ public interface PlayerActiveGame {
     void makeGuess(String word, Runnable onSuccess, Consumer<String> onError);
 
     /**
+     * ACTIVE METHOD
      * Ends the turn of the current team
      * it is the responsibility of the implementation to know which team this turn belongs to
      * @param onSuccess a callback to be called when the turn is ended successfully.
