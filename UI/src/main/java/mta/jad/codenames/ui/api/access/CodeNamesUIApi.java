@@ -1,6 +1,9 @@
-package mta.jad.codenames.ui.api.loader;
+package mta.jad.codenames.ui.api.access;
 
-import lombok.Getter;
+
+import mta.jad.codenames.ui.api.access.wrapper.ActiveGameExecutorWrapper;
+import mta.jad.codenames.ui.api.access.wrapper.GamesDashboardExecutorWrapper;
+import mta.jad.codenames.ui.api.access.wrapper.LoginExecutorWrapper;
 import mta.jad.codenames.ui.api.dashboard.GamesDashboard;
 import mta.jad.codenames.ui.api.game.ActiveGame;
 import mta.jad.codenames.ui.api.login.Login;
@@ -17,7 +20,6 @@ import java.util.function.Consumer;
 import java.util.jar.JarFile;
 import java.util.stream.Collectors;
 
-@Getter
 public enum CodeNamesUIApi {
     INSTANCE;
 
@@ -43,23 +45,50 @@ public enum CodeNamesUIApi {
 
         URLClassLoader urlClassLoader = new URLClassLoader(result.urls.toArray(new URL[0]));
 
-        locateGameDashboardImpl(urlClassLoader, result);
         locateLoginImpl(urlClassLoader, result);
+        locateGameDashboardImpl(urlClassLoader, result);
+        locateActiveGameImpl(urlClassLoader, result);
 
         urlClassLoader.close();
-
     }
 
     public void init(Login loginApi, GamesDashboard gamesDashboardApi, ActiveGame activeGameApi) {
-        login = loginApi;
-        gamesDashboard = gamesDashboardApi;
-        activeGame = activeGameApi;
+        login = new LoginExecutorWrapper(loginApi);
+        gamesDashboard = new GamesDashboardExecutorWrapper(gamesDashboardApi);
+        activeGame = new ActiveGameExecutorWrapper(activeGameApi);
+    }
+
+    public GamesDashboard getGamesDashboard() {
+        return gamesDashboard;
+    }
+
+    public Login getLogin() {
+        return login;
+    }
+
+    public ActiveGame getActiveGame() {
+        return activeGame;
+    }
+
+    private void locateActiveGameImpl(URLClassLoader urlClassLoader, ClassesAndJars jarsData) {
+
+        Consumer<String> GameDashboardExtractor = findApiImplementationWrapper(urlClassLoader, ActiveGame.class, apiImpl -> {
+            activeGame = new ActiveGameExecutorWrapper(apiImpl);
+            System.out.println("ActiveGame implementation found: " + apiImpl.getClass().getName());
+        });
+
+        jarsData.classes.forEach(GameDashboardExtractor);
+
+        if (activeGame == null) {
+            System.out.println("No ActiveGame implementation found! Exiting...");
+            throw new MissingResourceException("No ActiveGame implementation found!", ActiveGame.class.getName(), "");
+        }
     }
 
     private void locateGameDashboardImpl(URLClassLoader urlClassLoader, ClassesAndJars jarsData) {
 
         Consumer<String> GameDashboardExtractor = findApiImplementationWrapper(urlClassLoader, GamesDashboard.class, apiImpl -> {
-            gamesDashboard = apiImpl;
+            gamesDashboard = new GamesDashboardExecutorWrapper(apiImpl);
             System.out.println("GamesDashboard implementation found: " + apiImpl.getClass().getName());
         });
 
@@ -74,7 +103,7 @@ public enum CodeNamesUIApi {
     private void locateLoginImpl(URLClassLoader urlClassLoader, ClassesAndJars jarsData) {
 
         Consumer<String> loginExtractor = findApiImplementationWrapper(urlClassLoader, Login.class, apiImpl -> {
-            login = apiImpl;
+            login = new LoginExecutorWrapper(apiImpl);
             System.out.println("Login implementation found: " + apiImpl.getClass().getName());
         });
 

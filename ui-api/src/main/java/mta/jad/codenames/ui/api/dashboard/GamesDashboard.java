@@ -11,15 +11,18 @@ import java.util.function.Consumer;
 public interface GamesDashboard extends AdminGamesDashboard, UserGamesDashboard {
 
     /**
+     * REACTIVE METHOD
      * Register a callback to be called whenever the list of available games has changed.
      * The UI will delete existing list of shown games and will render these list according to their order.
      * If a certain game was already selected beforehand, and if it exists in this new list - it will be re-selected again, which will follow triggering the getGameDetails method.
      * beware of calling this method when not needed. calling it too frequently might cause performance issues and bad user experience (flickering ui; loosing selection context etc)
+     * this method MUST return immediately, and the callback should be called on a different thread.
      * @param onGameDetailsChanged the callback to be called when the game details are changed
      */
     void registerLightweightGameDetailsCallback(Consumer<List<LightweightGameDetails>> onGameDetailsChanged);
 
     /**
+     * ACTIVE METHOD
      * Get details of a specific game from the server.
      * This method will be called when the user selects a game from the list of available games.
      * @param gameName the name of the game to fetch its details

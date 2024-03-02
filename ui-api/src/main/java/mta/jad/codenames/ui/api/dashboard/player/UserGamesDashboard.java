@@ -5,6 +5,7 @@ import java.util.function.Consumer;
 public interface UserGamesDashboard {
 
     /**
+     * ACTIVE METHOD
      * Registers a player as a definer in a game.
      * @param gameName the name of the game
      * @param teamName the name of the team
@@ -16,6 +17,7 @@ public interface UserGamesDashboard {
     void registerDefiner(String gameName, String teamName, String playerName, Runnable onRegistrationSuccess, Consumer<String> onRegistrationFailure);
 
     /**
+     * ACTIVE METHOD
      * Registers a player as a guesser in a game.
      * @param gameName the name of the game
      * @param teamName the name of the team

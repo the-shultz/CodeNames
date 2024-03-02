@@ -5,6 +5,7 @@ import java.util.function.Consumer;
 public interface AdminGamesDashboard {
 
     /**
+     * ACTIVE METHOD
      * Load a new game to the server
      * upon loading the server should validate if this game is valid and return a result in accordance
      * @param gameXmlPath the path to the game xml file
