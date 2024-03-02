@@ -9,7 +9,7 @@ public class LoginExecutorWrapper extends UIExecutorWrapper implements Login {
     private final Login delegate;
 
     public LoginExecutorWrapper(Login delegate) {
-        super(1);
+        super("LOGIN",1);
         this.delegate = delegate;
     }
 

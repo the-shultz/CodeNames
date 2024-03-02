@@ -12,7 +12,7 @@ public class ActiveGameExecutorWrapper extends UIExecutorWrapper implements Acti
     private final ActiveGame delegate;
 
     public ActiveGameExecutorWrapper(ActiveGame delegate) {
-        super(3);
+        super("ACTIVE GAME", 3);
         this.delegate = delegate;
     }
 

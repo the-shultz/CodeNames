@@ -12,7 +12,7 @@ public class GamesDashboardExecutorWrapper extends UIExecutorWrapper implements 
     private final GamesDashboard delegate;
 
     public GamesDashboardExecutorWrapper(GamesDashboard delegate) {
-        super(3);
+        super("DASHBOARD", 3);
         this.delegate = delegate;
     }
 

@@ -17,7 +17,7 @@ public class LoginMock implements Login {
     public void adminLogin(Runnable onLoginSuccess, Consumer<String> onLoginFail) {
         boolean isFailure = MockUtils.randomBoolean(adminLoginFailureChance);
         if (!isFailure) {
-            System.out.println("Mock Login: @ adminLogin | Result: " + isFailure);;
+            System.out.println("Mock Login: @ adminLogin | Success !");
             onLoginSuccess.run();
         } else {
             System.out.println("Mock Login: @ adminLogin | failure");;
