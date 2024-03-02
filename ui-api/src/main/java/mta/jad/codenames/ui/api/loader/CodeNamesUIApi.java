@@ -52,7 +52,7 @@ public enum CodeNamesUIApi {
 
     public void init(Login loginApi, GamesDashboard gamesDashboardApi, ActiveGame activeGameApi) {
         login = new LoginExecutorWrapper(loginApi);
-        gamesDashboard = gamesDashboardApi;
+        gamesDashboard = new GamesDashboardExecutorWrapper(gamesDashboardApi);
         activeGame = activeGameApi;
     }
 
@@ -74,7 +74,7 @@ public enum CodeNamesUIApi {
     private void locateGameDashboardImpl(URLClassLoader urlClassLoader, ClassesAndJars jarsData) {
 
         Consumer<String> GameDashboardExtractor = findApiImplementationWrapper(urlClassLoader, GamesDashboard.class, apiImpl -> {
-            gamesDashboard = apiImpl;
+            gamesDashboard = new GamesDashboardExecutorWrapper(apiImpl);
             System.out.println("GamesDashboard implementation found: " + apiImpl.getClass().getName());
         });
 
