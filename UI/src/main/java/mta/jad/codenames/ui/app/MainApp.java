@@ -88,5 +88,14 @@ public class MainApp extends Application {
         CodeNamesUIApi.INSTANCE.init(implLocation);
     }
 
+    public static void main(String[] args) {
+
+        launch(args);
+
+        System.out.println("MainApp.main: Application has exited. Shutting down UI thread pools");
+        CodeNamesUIApi.INSTANCE.shutdown();
+
+        Runtime.getRuntime().exit(0);
+    }
 
 }

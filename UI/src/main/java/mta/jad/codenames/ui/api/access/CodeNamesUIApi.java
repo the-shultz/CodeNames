@@ -23,9 +23,9 @@ import java.util.stream.Collectors;
 public enum CodeNamesUIApi {
     INSTANCE;
 
-    private GamesDashboard gamesDashboard;
-    private Login login;
-    private ActiveGame activeGame;
+    private GamesDashboardExecutorWrapper gamesDashboard;
+    private LoginExecutorWrapper login;
+    private ActiveGameExecutorWrapper activeGame;
 
     public void init(String workingDirectoryPath) throws IOException {
         System.out.println("Searching implementations in " + workingDirectoryPath);
@@ -156,6 +156,12 @@ public enum CodeNamesUIApi {
             throw new RuntimeException(e);
         }
 
+    }
+
+    public void shutdown() {
+        CodeNamesUIApi.INSTANCE.activeGame.shutdown();
+        CodeNamesUIApi.INSTANCE.gamesDashboard.shutdown();
+        CodeNamesUIApi.INSTANCE.login.shutdown();
     }
 
     private static class ClassesAndJars {
