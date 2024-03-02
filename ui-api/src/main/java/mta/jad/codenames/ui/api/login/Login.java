@@ -8,10 +8,10 @@ public interface Login {
      * Login as admin
      * @param onLoginSuccess consumer of Boolean value, to be called when login operation went successfully.
      *                       The value will be true if the login was successful, false in case an admin is already connected.
-     * @param onLoginFail consumer of String value, to be called when login operation failed due to exception or an unplanned error
-     *                    The value will be an informative error message that will be displayed to the user.
+     * @param onLoginFail consumer of String value, to be called when login operation failed due to logical exception (like admin already connected, or user-name already exist)
+     *                    or an unplanned error. The value will be an informative error message that will be displayed to the user.
      */
-    void adminLogin(Consumer<Boolean> onLoginSuccess, Consumer<String> onLoginFail);
+    void adminLogin(Runnable onLoginSuccess, Consumer<String> onLoginFail);
 
     /**
      * Login as user

@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import mta.jad.codenames.ui.app.style.StyleManager;
 import mta.jad.codenames.ui.api.loader.CodeNamesUIApi;
+import mta.jad.codenames.api.impl.factory.MockApiFactory;
 
 import java.io.IOException;
 import java.net.URL;
@@ -34,9 +35,9 @@ import java.util.Optional;
         you can also use MockApiFactory to create a mock with a predefined behavior for either user or admin,
         e.g.
         Admin:
-        CodeNamesUIApi.INSTANCE.init(MockApiFactory.CreateSuccessfulLogin(), MockApiFactory.CreateAdminGamesDashboard(), MockApiFactory.createAdminActiveGame());
+        CodeNamesUIApi.INSTANCE.init(MockApiFactory.createSuccessfulLogin(), MockApiFactory.createAdminGamesDashboard(), MockApiFactory.createAdminActiveGame());
         User:
-        CodeNamesUIApi.INSTANCE.init(MockApiFactory.CreateSuccessfulLogin(), MockApiFactory.CreateUserGamesDashboard(), MockApiFactory.createPlayerActiveGame());
+        CodeNamesUIApi.INSTANCE.init(MockApiFactory.createSuccessfulLogin(), MockApiFactory.createUserGamesDashboard(), MockApiFactory.createPlayerActiveGame());
 
 ### using the API:
 
@@ -56,6 +57,8 @@ public class MainApp extends Application {
 
         //initializeFromExternalJar();
 
+        initializeBasedOnMocksForAdmin();
+
         URL resource = getClass().getResource("/app/form/LoginForm.fxml");
         assert resource != null;
 
@@ -67,6 +70,10 @@ public class MainApp extends Application {
         primaryStage.show();
         primaryStage.setMinWidth(primaryStage.getWidth());
         primaryStage.setMinHeight(primaryStage.getHeight());
+    }
+
+    private static void initializeBasedOnMocksForAdmin() {
+        CodeNamesUIApi.INSTANCE.init(MockApiFactory.createSuccessfulLogin(), MockApiFactory.createAdminGamesDashboard(), MockApiFactory.createAdminActiveGame());
     }
 
     private static void initializeFromExternalJar() throws IOException {

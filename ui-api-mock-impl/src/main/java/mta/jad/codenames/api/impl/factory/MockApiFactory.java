@@ -26,7 +26,6 @@ public class MockApiFactory {
                 .builder()
                 .adminLoginFailureChance(0.0)
                 .userLoginFailureChance(0.0)
-                .adminLoginResult(true)
                 .build();
 
     }
@@ -37,7 +36,6 @@ public class MockApiFactory {
                 .builder()
                 .adminLoginFailureChance(1.0)
                 .userLoginFailureChance(1.0)
-                .adminLoginResult(false)
                 .build();
     }
 

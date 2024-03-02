@@ -9,17 +9,16 @@ import java.util.function.Consumer;
 @Builder
 public class LoginMock implements Login {
 
-    private boolean adminLoginResult;
     private double adminLoginFailureChance;
 
     private double userLoginFailureChance;
 
     @Override
-    public void adminLogin(Consumer<Boolean> onLoginSuccess, Consumer<String> onLoginFail) {
-        boolean failure = MockUtils.randomBoolean(adminLoginFailureChance);
-        if (failure) {
-            System.out.println("Mock Login: @ adminLogin | Result: " + adminLoginResult);;
-            onLoginSuccess.accept(adminLoginResult);
+    public void adminLogin(Runnable onLoginSuccess, Consumer<String> onLoginFail) {
+        boolean isFailure = MockUtils.randomBoolean(adminLoginFailureChance);
+        if (!isFailure) {
+            System.out.println("Mock Login: @ adminLogin | Result: " + isFailure);;
+            onLoginSuccess.run();
         } else {
             System.out.println("Mock Login: @ adminLogin | failure");;
             onLoginFail.accept("Login failed (chance to fail: " + adminLoginFailureChance + ")");
@@ -28,8 +27,8 @@ public class LoginMock implements Login {
 
     @Override
     public void userLogin(String name, Runnable onLoginSuccess, Consumer<String> onLoginFail) {
-        boolean failure = MockUtils.randomBoolean(userLoginFailureChance);
-        if (failure) {
+        boolean isFailure = MockUtils.randomBoolean(userLoginFailureChance);
+        if (!isFailure) {
             System.out.println("Mock Login: @ userLogin | Success !");;
             onLoginSuccess.run();
         } else {

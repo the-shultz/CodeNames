@@ -1,7 +1,5 @@
 package mta.jad.codenames.ui.app;
 
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -13,11 +11,10 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
-import mta.jad.codenames.ui.app.components.WordCard;
+import mta.jad.codenames.ui.api.loader.CodeNamesUIApi;
 import mta.jad.codenames.ui.app.style.StyleManager;
 
 import java.io.IOException;
-import java.net.URL;
 
 public class LoginController {
 
@@ -32,9 +29,10 @@ public class LoginController {
     @FXML
     public void initialize() {
         textFieldName.disableProperty().bind(radioUser.selectedProperty().not());
-        buttonLogin.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
+
+        buttonLogin.setOnAction(event -> {
+
+            Runnable onSuccessfulLogin = () -> {
                 try {
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("/app/form/DashboardForm.fxml"));
                     Parent root = loader.load();
@@ -53,10 +51,22 @@ public class LoginController {
                     Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                     currentStage.close();
                 } catch (IOException e) {
-                    e.printStackTrace();
+                    // setup alert box. should be global to whole UI
                 }
+            };
 
+            if (radioAdmin.isSelected()) {
+                CodeNamesUIApi.INSTANCE.getLogin().adminLogin(onSuccessfulLogin, errorMessage -> {
+                    System.out.println("Failure upon admin login: " + errorMessage);
+                    // setup alert box. should be global to whole UI
+                });
+            } else {
+                CodeNamesUIApi.INSTANCE.getLogin().userLogin(textFieldName.getText(), onSuccessfulLogin, errorMessage -> {
+                    System.out.println("Failure upon player login: " + errorMessage);
+                    // setup alert box. should be global to whole UI
+                });
             }
         });
     }
+
 }
