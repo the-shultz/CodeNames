@@ -1,5 +1,6 @@
 package mta.jad.codenames.ui.app;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -32,36 +33,13 @@ public class LoginController {
 
         buttonLogin.setOnAction(event -> {
 
-            Runnable onSuccessfulLogin = () -> {
-                try {
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/app/form/DashboardForm.fxml"));
-                    Parent root = loader.load();
-
-                    // Create a new stage (window)
-                    Stage newStage = new Stage();
-                    newStage.setTitle("Dashboard");
-                    Scene scene = new Scene(root);
-                    StyleManager.getInstance().register(scene);
-                    newStage.setScene(scene);
-                    newStage.sizeToScene();
-                    newStage.show();
-                    newStage.setMinWidth(newStage.getWidth());
-                    newStage.setMinHeight(newStage.getHeight());
-
-                    Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                    currentStage.close();
-                } catch (IOException e) {
-                    // setup alert box. should be global to whole UI
-                }
-            };
-
             if (radioAdmin.isSelected()) {
-                CodeNamesUIApi.INSTANCE.getLogin().adminLogin(onSuccessfulLogin, errorMessage -> {
+                CodeNamesUIApi.INSTANCE.getLogin().adminLogin(createOnSuccessfulLoginContinuation(event, true), errorMessage -> {
                     System.out.println("Failure upon admin login: " + errorMessage);
                     // setup alert box. should be global to whole UI
                 });
             } else {
-                CodeNamesUIApi.INSTANCE.getLogin().userLogin(textFieldName.getText(), onSuccessfulLogin, errorMessage -> {
+                CodeNamesUIApi.INSTANCE.getLogin().userLogin(textFieldName.getText(), createOnSuccessfulLoginContinuation(event, false), errorMessage -> {
                     System.out.println("Failure upon player login: " + errorMessage);
                     // setup alert box. should be global to whole UI
                 });
@@ -69,4 +47,30 @@ public class LoginController {
         });
     }
 
+    private Runnable createOnSuccessfulLoginContinuation(ActionEvent event, boolean isAdmin) {
+        return () -> {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/app/form/DashboardForm.fxml"));
+                Parent root = loader.load();
+                DashboardController dashboardController = loader.getController();
+                dashboardController.setAdminMode(isAdmin);
+
+                // Create a new stage (window)
+                Stage newStage = new Stage();
+                newStage.setTitle("Dashboard");
+                Scene scene = new Scene(root);
+                StyleManager.getInstance().register(scene);
+                newStage.setScene(scene);
+                newStage.sizeToScene();
+                newStage.show();
+                newStage.setMinWidth(newStage.getWidth());
+                newStage.setMinHeight(newStage.getHeight());
+
+                Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                currentStage.close();
+            } catch (IOException e) {
+                // setup alert box. should be global to whole UI
+            }
+        };
+    }
 }
