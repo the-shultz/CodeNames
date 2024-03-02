@@ -8,6 +8,7 @@ import javafx.stage.Stage;
 import mta.jad.codenames.ui.app.style.StyleManager;
 import mta.jad.codenames.ui.api.loader.CodeNamesUIApi;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.Optional;
 
@@ -53,15 +54,7 @@ public class MainApp extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
 
-        // api impl location can be supplied externally via -DapiImplFolder=... or defaults to working directory
-        String implLocation = Optional
-                .ofNullable(System.getProperty("apiImplFolder"))
-                .orElse(System.getProperty("user.dir"));
-
-        // initialize the API instances to be used by the UI. has to be called once upon startup.
-        // in case fails to locate API, throws informative exceptions.
-        //CodeNamesUIApi.INSTANCE.init(implLocation);
-
+        //initializeFromExternalJar();
 
         URL resource = getClass().getResource("/app/form/LoginForm.fxml");
         assert resource != null;
@@ -74,6 +67,17 @@ public class MainApp extends Application {
         primaryStage.show();
         primaryStage.setMinWidth(primaryStage.getWidth());
         primaryStage.setMinHeight(primaryStage.getHeight());
+    }
+
+    private static void initializeFromExternalJar() throws IOException {
+        // api impl location can be supplied externally via -DapiImplFolder=... or defaults to working directory
+        String implLocation = Optional
+                .ofNullable(System.getProperty("apiImplFolder"))
+                .orElse(System.getProperty("user.dir"));
+
+        // initialize the API instances to be used by the UI. has to be called once upon startup.
+        // in case fails to locate API, throws informative exceptions.
+        CodeNamesUIApi.INSTANCE.init(implLocation);
     }
 
 
