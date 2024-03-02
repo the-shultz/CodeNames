@@ -43,17 +43,32 @@ public enum CodeNamesUIApi {
 
         URLClassLoader urlClassLoader = new URLClassLoader(result.urls.toArray(new URL[0]));
 
-        locateGameDashboardImpl(urlClassLoader, result);
         locateLoginImpl(urlClassLoader, result);
+        locateGameDashboardImpl(urlClassLoader, result);
+        locateActiveGameImpl(urlClassLoader, result);
 
         urlClassLoader.close();
-
     }
 
     public void init(Login loginApi, GamesDashboard gamesDashboardApi, ActiveGame activeGameApi) {
         login = loginApi;
         gamesDashboard = gamesDashboardApi;
         activeGame = activeGameApi;
+    }
+
+    private void locateActiveGameImpl(URLClassLoader urlClassLoader, ClassesAndJars jarsData) {
+
+        Consumer<String> GameDashboardExtractor = findApiImplementationWrapper(urlClassLoader, ActiveGame.class, apiImpl -> {
+            activeGame = apiImpl;
+            System.out.println("ActiveGame implementation found: " + apiImpl.getClass().getName());
+        });
+
+        jarsData.classes.forEach(GameDashboardExtractor);
+
+        if (activeGame == null) {
+            System.out.println("No ActiveGame implementation found! Exiting...");
+            throw new MissingResourceException("No ActiveGame implementation found!", ActiveGame.class.getName(), "");
+        }
     }
 
     private void locateGameDashboardImpl(URLClassLoader urlClassLoader, ClassesAndJars jarsData) {
