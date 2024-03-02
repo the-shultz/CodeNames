@@ -1,4 +1,4 @@
-package mta.jad.codenames.ui.api.loader;
+package mta.jad.codenames.ui.api.access.wrapper;
 
 import mta.jad.codenames.ui.api.login.Login;
 

@@ -1,4 +1,4 @@
-package mta.jad.codenames.ui.api.loader;
+package mta.jad.codenames.ui.api.access.wrapper;
 
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;

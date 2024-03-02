@@ -5,10 +5,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import mta.jad.codenames.ui.api.loader.CodeNamesUIApi;
 
 import java.net.URL;
-import java.util.Optional;
 
 /*
 

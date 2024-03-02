@@ -1,8 +1,11 @@
-package mta.jad.codenames.ui.api.loader;
+package mta.jad.codenames.ui.api.access;
 
 import lombok.Getter;
 import mta.jad.codenames.ui.api.dashboard.GamesDashboard;
 import mta.jad.codenames.ui.api.game.ActiveGame;
+import mta.jad.codenames.ui.api.access.wrapper.ActiveGameExecutorWrapper;
+import mta.jad.codenames.ui.api.access.wrapper.GamesDashboardExecutorWrapper;
+import mta.jad.codenames.ui.api.access.wrapper.LoginExecutorWrapper;
 import mta.jad.codenames.ui.api.login.Login;
 
 import java.io.File;
