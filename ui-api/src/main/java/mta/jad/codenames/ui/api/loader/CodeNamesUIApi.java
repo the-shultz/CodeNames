@@ -51,7 +51,7 @@ public enum CodeNamesUIApi {
     }
 
     public void init(Login loginApi, GamesDashboard gamesDashboardApi, ActiveGame activeGameApi) {
-        login = loginApi;
+        login = new LoginExecutorWrapper(loginApi);
         gamesDashboard = gamesDashboardApi;
         activeGame = activeGameApi;
     }
@@ -89,7 +89,7 @@ public enum CodeNamesUIApi {
     private void locateLoginImpl(URLClassLoader urlClassLoader, ClassesAndJars jarsData) {
 
         Consumer<String> loginExtractor = findApiImplementationWrapper(urlClassLoader, Login.class, apiImpl -> {
-            login = apiImpl;
+            login = new LoginExecutorWrapper(apiImpl);
             System.out.println("Login implementation found: " + apiImpl.getClass().getName());
         });
 
