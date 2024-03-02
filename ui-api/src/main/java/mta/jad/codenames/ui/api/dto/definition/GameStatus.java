@@ -1,4 +1,4 @@
-package mta.jad.codenames.ui.api.dto;
+package mta.jad.codenames.ui.api.dto.definition;
 
 /*
     Represents the status of a game.

@@ -1,9 +1,6 @@
-package mta.jad.codenames.ui.api.dto;
+package mta.jad.codenames.ui.api.dto.definition;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.List;
 
@@ -11,6 +8,7 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 /*
     Represents the details of a players in a team's group
     Contains the number of players required, the number of players registered, and the list of players names.

@@ -2,6 +2,8 @@ package mta.jad.codenames.ui.api.loader;
 
 import lombok.Getter;
 import mta.jad.codenames.ui.api.dashboard.GamesDashboard;
+import mta.jad.codenames.ui.api.game.ActiveGame;
+import mta.jad.codenames.ui.api.login.Login;
 
 import java.io.File;
 import java.io.IOException;
@@ -20,6 +22,8 @@ public enum CodeNamesUIApi {
     INSTANCE;
 
     private GamesDashboard gamesDashboard;
+    private Login login;
+    private ActiveGame activeGame;
 
     public void init(String workingDirectoryPath) throws IOException {
         System.out.println("Searching implementations in " + workingDirectoryPath);
@@ -40,23 +44,45 @@ public enum CodeNamesUIApi {
         URLClassLoader urlClassLoader = new URLClassLoader(result.urls.toArray(new URL[0]));
 
         locateGameDashboardImpl(urlClassLoader, result);
+        locateLoginImpl(urlClassLoader, result);
 
         urlClassLoader.close();
 
     }
 
-    private void locateGameDashboardImpl(URLClassLoader urlClassLoader, ClassesAndJars result) {
+    public void init(Login loginApi, GamesDashboard gamesDashboardApi, ActiveGame activeGameApi) {
+        login = loginApi;
+        gamesDashboard = gamesDashboardApi;
+        activeGame = activeGameApi;
+    }
+
+    private void locateGameDashboardImpl(URLClassLoader urlClassLoader, ClassesAndJars jarsData) {
 
         Consumer<String> GameDashboardExtractor = findApiImplementationWrapper(urlClassLoader, GamesDashboard.class, apiImpl -> {
             gamesDashboard = apiImpl;
             System.out.println("GamesDashboard implementation found: " + apiImpl.getClass().getName());
         });
 
-        result.classes.forEach(GameDashboardExtractor);
+        jarsData.classes.forEach(GameDashboardExtractor);
 
         if (gamesDashboard == null) {
             System.out.println("No GamesDashboard implementation found! Exiting...");
             throw new MissingResourceException("No GamesDashboard implementation found!", GamesDashboard.class.getName(), "");
+        }
+    }
+
+    private void locateLoginImpl(URLClassLoader urlClassLoader, ClassesAndJars jarsData) {
+
+        Consumer<String> loginExtractor = findApiImplementationWrapper(urlClassLoader, Login.class, apiImpl -> {
+            login = apiImpl;
+            System.out.println("Login implementation found: " + apiImpl.getClass().getName());
+        });
+
+        jarsData.classes.forEach(loginExtractor);
+
+        if (login == null) {
+            System.out.println("No Login implementation found! Exiting...");
+            throw new MissingResourceException("No Login implementation found!", Login.class.getName(), "");
         }
     }
 
@@ -83,20 +109,7 @@ public enum CodeNamesUIApi {
                 .flatMap(List::stream)
                 .collect(Collectors.toList());
 
-        //classes.forEach(System.out::println);
-
         return new ClassesAndJars(urls, classes);
-    }
-
-    private static class ClassesAndJars {
-
-        public final ArrayList<URL> urls;
-        public final List<String> classes;
-
-        public ClassesAndJars(ArrayList<URL> urls, List<String> classes) {
-            this.urls = urls;
-            this.classes = classes;
-        }
     }
 
     private <T> Consumer<String> findApiImplementationWrapper(URLClassLoader urlClassLoader, Class<T> api, Consumer<T> onSuccess) {
@@ -114,6 +127,17 @@ public enum CodeNamesUIApi {
             throw new RuntimeException(e);
         }
 
+    }
+
+    private static class ClassesAndJars {
+
+        public final ArrayList<URL> urls;
+        public final List<String> classes;
+
+        public ClassesAndJars(ArrayList<URL> urls, List<String> classes) {
+            this.urls = urls;
+            this.classes = classes;
+        }
     }
 
     public static void main(String[] args) throws IOException {
