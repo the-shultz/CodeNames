@@ -5,8 +5,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import mta.jad.codenames.ui.api.access.CodeNamesUIApi;
 import mta.jad.codenames.ui.app.style.StyleManager;
-import mta.jad.codenames.ui.api.loader.CodeNamesUIApi;
+
 import mta.jad.codenames.api.impl.factory.MockApiFactory;
 
 import java.io.IOException;

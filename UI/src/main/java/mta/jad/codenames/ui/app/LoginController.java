@@ -12,7 +12,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
-import mta.jad.codenames.ui.api.loader.CodeNamesUIApi;
+
+import mta.jad.codenames.ui.api.access.CodeNamesUIApi;
 import mta.jad.codenames.ui.app.style.StyleManager;
 
 import java.io.IOException;

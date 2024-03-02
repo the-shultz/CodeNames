@@ -14,7 +14,7 @@ public class LoginExecutorWrapper extends UIExecutorWrapper implements Login {
     }
 
     @Override
-    public void adminLogin(Consumer<Boolean> onLoginSuccess, Consumer<String> onLoginFail) {
+    public void adminLogin(Runnable onLoginSuccess, Consumer<String> onLoginFail) {
         execute(() -> delegate.adminLogin(onLoginSuccess, onLoginFail));
     }
 

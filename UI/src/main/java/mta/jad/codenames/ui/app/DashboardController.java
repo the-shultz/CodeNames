@@ -6,7 +6,8 @@ import javafx.beans.property.SimpleBooleanProperty;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.layout.HBox;
-import mta.jad.codenames.ui.api.loader.CodeNamesUIApi;
+
+import mta.jad.codenames.ui.api.access.CodeNamesUIApi;
 import mta.jad.codenames.ui.app.components.TeamCard;
 
 public class DashboardController {
