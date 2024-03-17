@@ -41,7 +41,7 @@ public class LoginController {
                     // setup alert box. should be global to whole UI
                 });
             } else {
-                CodeNamesUIApi.INSTANCE.getLogin().userLogin(textFieldName.getText(), createOnSuccessfulLoginContinuation(event, false), errorMessage -> {
+                CodeNamesUIApi.INSTANCE.getLogin().playerLogin(textFieldName.getText(), createOnSuccessfulLoginContinuation(event, false), errorMessage -> {
                     System.out.println("Failure upon player login: " + errorMessage);
                     // setup alert box. should be global to whole UI
                 });

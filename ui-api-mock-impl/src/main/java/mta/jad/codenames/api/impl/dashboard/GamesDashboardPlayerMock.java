@@ -13,7 +13,7 @@ import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
 @Builder
-public class GamesDashboardUserMock extends AbstractGameDashboardMock {
+public class GamesDashboardPlayerMock extends AbstractGameDashboardMock {
 
     private final int totalGamesToProduce;
     private final int totalSecondsIntervalForGameProduction;

@@ -14,11 +14,11 @@ public interface Login {
     void adminLogin(Runnable onLoginSuccess, Consumer<String> onLoginFail);
 
     /**
-     * Login as user
-     * @param name the user name. each user has a unique name.
+     * Login as player
+     * @param name the player name. each user has a unique name.
      * @param onLoginSuccess runnable to be called when user login operation went successfully.
      * @param onLoginFail consumer of String value, to be called when login operation failed due to exception or an unplanned error
      *                    The value will be an informative error message that will be displayed to the user.
      */
-    void userLogin(String name, Runnable onLoginSuccess, Consumer<String> onLoginFail);
+    void playerLogin(String name, Runnable onLoginSuccess, Consumer<String> onLoginFail);
 }

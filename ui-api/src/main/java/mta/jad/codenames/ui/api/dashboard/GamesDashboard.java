@@ -1,14 +1,14 @@
 package mta.jad.codenames.ui.api.dashboard;
 
 import mta.jad.codenames.ui.api.dashboard.admin.AdminGamesDashboard;
-import mta.jad.codenames.ui.api.dashboard.player.UserGamesDashboard;
+import mta.jad.codenames.ui.api.dashboard.player.PlayerGamesDashboard;
 import mta.jad.codenames.ui.api.dto.definition.FullGameDetails;
 import mta.jad.codenames.ui.api.dto.definition.LightweightGameDetails;
 
 import java.util.List;
 import java.util.function.Consumer;
 
-public interface GamesDashboard extends AdminGamesDashboard, UserGamesDashboard {
+public interface GamesDashboard extends AdminGamesDashboard, PlayerGamesDashboard {
 
     /**
      * REACTIVE METHOD

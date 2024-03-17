@@ -1,7 +1,7 @@
 package mta.jad.codenames.api.impl.factory;
 
 import mta.jad.codenames.api.impl.dashboard.GamesDashboardAdminMock;
-import mta.jad.codenames.api.impl.dashboard.GamesDashboardUserMock;
+import mta.jad.codenames.api.impl.dashboard.GamesDashboardPlayerMock;
 import mta.jad.codenames.api.impl.game.chat.ChatActionsMock;
 import mta.jad.codenames.api.impl.game.impl.AdminActiveGameMock;
 import mta.jad.codenames.api.impl.game.turns.api.MockedTurn;
@@ -49,7 +49,7 @@ public class MockApiFactory {
 
     public static GamesDashboard createUserGamesDashboard() {
         return
-            GamesDashboardUserMock
+            GamesDashboardPlayerMock
                     .builder()
                     .totalGamesToProduce(2)
                     .totalSecondsIntervalForGameProduction(2)

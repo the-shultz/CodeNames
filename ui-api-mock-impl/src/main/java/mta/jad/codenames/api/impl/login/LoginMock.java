@@ -26,7 +26,7 @@ public class LoginMock implements Login {
     }
 
     @Override
-    public void userLogin(String name, Runnable onLoginSuccess, Consumer<String> onLoginFail) {
+    public void playerLogin(String name, Runnable onLoginSuccess, Consumer<String> onLoginFail) {
         boolean isFailure = MockUtils.randomBoolean(userLoginFailureChance);
         if (!isFailure) {
             System.out.println("Mock Login: @ userLogin | Success !");;

@@ -2,7 +2,7 @@ package mta.jad.codenames.ui.api.dashboard.player;
 
 import java.util.function.Consumer;
 
-public interface UserGamesDashboard {
+public interface PlayerGamesDashboard {
 
     /**
      * ACTIVE METHOD
