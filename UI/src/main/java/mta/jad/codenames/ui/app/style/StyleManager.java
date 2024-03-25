@@ -13,6 +13,7 @@ public class StyleManager {
     private final String MAIN = "main.css";
     private final String DARK = "dark.css";
     private final String COLOR = "color.css";
+    private final String TEAM = "team.css";
     private final String PATH = "/style/";
 
     private StyleManager(){}
@@ -30,6 +31,7 @@ public class StyleManager {
         scene.getStylesheets().add(Objects.requireNonNull(StyleManager.class.getResource(PATH + MAIN)).toExternalForm());
         scene.getStylesheets().add(Objects.requireNonNull(StyleManager.class.getResource(PATH + DARK)).toExternalForm());
         scene.getStylesheets().add(Objects.requireNonNull(StyleManager.class.getResource(PATH + COLOR)).toExternalForm());
+        scene.getStylesheets().add(Objects.requireNonNull(StyleManager.class.getResource(PATH + TEAM)).toExternalForm());
     }
 
     public void unregister(Scene scene) {

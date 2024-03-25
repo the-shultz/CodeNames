@@ -1,7 +1,7 @@
 * {
     /* Colors for intractable objects */
     -primary-accent: #02bbee;
-    -secondary-accent: #02eeab;
+    -secondary-accent: #607D8B;
     -primary-gradient-accent: #3502ee;
     -primary-accent-gradient: linear-gradient(to bottom right, -primary-accent, -primary-gradient-accent);
 
@@ -17,7 +17,9 @@
     -secondary-team-black: #263238;
     -primary-team-gradient-black: linear-gradient(to bottom left, -primary-team-black, -secondary-team-black);
 
-    -primary-team-neutral: #FFE57F;
+    -primary-team-neutral: #9E9E9E;
+    -secondary-team-neutral: #607D8B;
+    -primary-team-gradient-neutral: linear-gradient(to bottom left, -primary-team-neutral, -secondary-team-neutral);
 
     /* Colors for errors */
     -error: #D50000;

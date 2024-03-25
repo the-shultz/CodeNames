@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import mta.jad.codenames.ui.app.components.*?>
+<?import mta.jad.codenames.ui.app.components.chat.*?>
+
+<SplitPane dividerPositions="0.25, 0.75" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mta.jad.codenames.ui.app.controller.GameController">
+    <VBox fx:id="vboxTeams" prefHeight="200.0" prefWidth="100.0" />
+    <GridPane hgap="16.0" vgap="16.0">
+        <columnConstraints>
+            <ColumnConstraints hgrow="ALWAYS" />
+            <ColumnConstraints hgrow="NEVER" />
+         <ColumnConstraints hgrow="NEVER" minWidth="10.0" />
+        </columnConstraints>
+        <rowConstraints>
+            <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+            <RowConstraints vgrow="NEVER" />
+        </rowConstraints>
+        <padding>
+            <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />
+        </padding>
+        <ScrollPane fitToHeight="true" fitToWidth="true" GridPane.columnSpan="2147483647">
+            <GameBoard fx:id="gameBoard" cols="5" rows="5" />
+        </ScrollPane>
+        <ComboBox fx:id="comboBoxWordCount" promptText="Words" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+        <TextField fx:id="textFieldClue" promptText="Clue" GridPane.rowIndex="1" />
+      <Button fx:id="buttonGameAction" mnemonicParsing="false" text="SUBMIT" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+    </GridPane>
+    <ChatBox fx:id="chatBox" />
+</SplitPane>

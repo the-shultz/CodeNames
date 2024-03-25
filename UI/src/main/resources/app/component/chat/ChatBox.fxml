@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<fx:root hgap="16.0" type="GridPane" vgap="16.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
+    <padding>
+        <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />
+    </padding>
+    <rowConstraints>
+        <RowConstraints maxHeight="1.7976931348623157E308" vgrow="ALWAYS" />
+        <RowConstraints fillHeight="false" vgrow="NEVER" />
+    </rowConstraints>
+    <columnConstraints>
+        <ColumnConstraints hgrow="ALWAYS" />
+        <ColumnConstraints hgrow="NEVER" />
+    </columnConstraints>
+    <ScrollPane fitToWidth="true" hbarPolicy="NEVER" GridPane.columnSpan="2147483647">
+        <VBox fx:id="vboxMessages" spacing="8.0">
+         <padding>
+            <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+         </padding></VBox>
+    </ScrollPane>
+    <TextField fx:id="textFieldInput" GridPane.rowIndex="1" />
+    <Button fx:id="buttonSend" mnemonicParsing="false" text="SEND" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+</fx:root>

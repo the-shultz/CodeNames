@@ -8,7 +8,6 @@
 <fx:root hgap="16.0" styleClass="team-card" type="GridPane" vgap="16.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
     <columnConstraints>
         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
-        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
     </columnConstraints>
     <rowConstraints>
         <RowConstraints minHeight="10.0" vgrow="NEVER" />

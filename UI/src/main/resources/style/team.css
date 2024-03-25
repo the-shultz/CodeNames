@@ -1,0 +1,22 @@
+.team-blue {
+    -team-color: -primary-team-blue;
+    -team-gradient: -primary-team-gradient-blue;
+}
+
+/* Team Red */
+.team-red {
+    -team-color: -primary-team-red;
+    -team-gradient: -primary-team-gradient-red;
+}
+
+/* Team Neutral */
+.team-neutral {
+    -team-color: -primary-team-neutral;
+    -team-gradient: -primary-team-gradient-neutral;
+}
+
+/* Team Black */
+.team-black {
+    -team-color: -primary-team-black;
+    -team-gradient: -primary-team-gradient-black;
+}

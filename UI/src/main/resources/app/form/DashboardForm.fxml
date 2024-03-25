@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import mta.jad.codenames.ui.app.components.*?>
 
-<SplitPane dividerPositions="0.3" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mta.jad.codenames.ui.app.DashboardController">
+<SplitPane dividerPositions="0.3" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mta.jad.codenames.ui.app.controller.DashboardController">
     <TableView>
         <columns>
             <TableColumn maxWidth="1.7976931348623157E308" minWidth="50.0" prefWidth="-1.0" text="Name" />

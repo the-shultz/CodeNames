@@ -60,26 +60,38 @@
     -fx-background-radius: 16;
     -fx-border-radius: 16;
     -fx-border-width: 4;
-    -fx-border-color: -primary-team-gradient-black;
+    -fx-border-color: -team-gradient;
     -fx-background-color: -secondary-background;
 }
 
 .card {
     -fx-background-radius: 16;
-    -fx-background-color: -primary-team-gradient-black;
+    -fx-border-width: 4;
+    -fx-border-color: transparent;
+    -fx-background-color: -team-gradient;
 }
 
-.card:hover {
+.clickable {
+    -fx-scale-x: 1.0;
+    -fx-scale-y: 1.0;
+}
+
+.clickable:hover {
     -fx-scale-x: 1.1;
     -fx-scale-y: 1.1;
+}
+
+.message {
+    -fx-background-radius: 16;
+    -fx-background-color: -team-color;
 }
 
 .team-card {
     -fx-background-radius: 16;
     -fx-border-radius: 16;
     -fx-border-width: 4;
-    -fx-border-color: -primary-team-gradient-blue;
     -fx-background-color: -secondary-background;
+    -fx-border-color: -team-gradient;
 }
 
 .button-circle {

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.layout.*?>
+
+<fx:root hgap="16.0" type="GridPane" vgap="16.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
+    <padding>
+        <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />
+    </padding>
+</fx:root>

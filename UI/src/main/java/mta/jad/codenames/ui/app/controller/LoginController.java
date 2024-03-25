@@ -1,4 +1,4 @@
-package mta.jad.codenames.ui.app;
+package mta.jad.codenames.ui.app.controller;
 
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
